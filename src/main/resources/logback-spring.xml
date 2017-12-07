@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration >
+    <property name="log.path" value="./logs/springboot_rabbitmq"/>
+    <!-- 控制台输出 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%p] [%c:%L] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="stdout" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%p] [%c:%L] %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <fileNamePattern>${log.path}/stdout.log.%d{yyyy-MM-dd}
+            </fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="core" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%p] [%c:%L] %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <fileNamePattern>${log.path}/core.log.%d{yyyy-MM-dd}
+            </fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <logger name="CORE_LOGGER" additivity="false" level="debug">
+        <appender-ref ref="console" />
+        <appender-ref ref="core" />
+    </logger>
+
+    <logger name="org.springframework" level="WARN"/>
+
+    <!-- 日志输出级别 -->
+    <root level="debug">
+        <appender-ref ref="console"/>
+        <appender-ref ref="stdout"/>
+    </root>
+</configuration>
