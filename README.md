@@ -1,0 +1,2 @@
+# springboot_rabbitmq
+用springboot连接rabbitmq
